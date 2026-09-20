@@ -1,11 +1,13 @@
 import json
 import random
+import subprocess
 
 import numpy as np
 import torch
-from drgrpo_grader import question_only_reward_fn, r1_zero_reward_fn
-from modal_utils import app
-from vllm_utils import VLLMServer
+
+from cs336_alignment.drgrpo_grader import question_only_reward_fn, r1_zero_reward_fn
+from cs336_alignment.modal_utils import app, image, quote_command
+from cs336_alignment.vllm_utils import VLLMServer
 
 seed = 42
 max_token = 512
@@ -99,11 +101,34 @@ class BenchmarkBaseline:
         # 3. benchmark on 3 shot
 
 
+@app.function(
+    image=image,
+    gpu="T4",
+)
+def check_vllm() -> None:
+    commands = [
+        ["which", "vllm"],
+        ["python", "-c", "import pyarrow; print('pyarrow:', pyarrow.__version__)"],
+        ["python", "-c", "import datasets; print('datasets:', datasets.__version__)"],
+        ["vllm", "--version"],
+    ]
+
+    for command in commands:
+        print(f"$ {' '.join(command)}", flush=True)
+        subprocess.run(command, check=False)
+
+
 @app.local_entrypoint()
 def main():
+    check_vllm.remote()
+
     BenchmarkBaseline(
         model_id="allenai/OLMo-2-0425-1B-Instruct"
     ).benchmark_question_only(
         data_path="./data/gsm8k/train.jsonl",
         benchmark_data_size=10,
     )
+
+
+# local testing
+# main()

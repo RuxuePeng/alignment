@@ -15,6 +15,7 @@ dependencies = [
     "typer>=0.15.4",
     "xopen>=2.0.2",
     "latex2sympy2_extended",
+    "pyarrow<21",
 ]
 
 [project.optional-dependencies]
