@@ -14,16 +14,17 @@ dependencies = [
     "transformers>=4.50.0",
     "typer>=0.15.4",
     "xopen>=2.0.2",
+    "latex2sympy2_extended",
 ]
 
 [project.optional-dependencies]
 gpu = [
-    "alpaca-eval>=0.6.6",
+    "alpaca-eval>=0.6.6; sys_platform == 'linux' and platform_machine == 'x86_64'",
     # No official flash-attn 2.8.3 wheel exists for Torch 2.10; use the
     # community cp312/cu12/Torch 2.10 wheel to avoid source builds on Modal.
     "flash-attn @ https://github.com/lesj0610/flash-attention/releases/download/v2.8.3-cu12-torch2.10-cp312/flash_attn-2.8.3%2Bcu12torch2.10cxx11abiTRUE-cp312-cp312-linux_x86_64.whl ; sys_platform == 'linux' and platform_machine == 'x86_64'",
     "torch",
-    "vllm==0.19.1",
+    "vllm==0.19.1; sys_platform == 'linux' and platform_machine == 'x86_64'",
     "wandb>=0.26.0",
 ]
 plots = [
@@ -36,13 +37,13 @@ include = ["cs336_alignment*"]
 [tool.uv]
 package = true
 environments = [
-    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'darwin' and platform_machine == 'x86_64'",
     "sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
 
 [tool.uv.sources]
 torch = [
-    { index = "pytorch-cu129", extra = "gpu", marker = "sys_platform == 'linux'" },
+    { index = "pytorch-cu129", extra = "gpu", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" },
 ]
 [[tool.uv.index]]
 name = "pytorch-cu129"
