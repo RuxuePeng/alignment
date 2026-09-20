@@ -33,7 +33,7 @@ if SUNET_ID == "TODO":
     )
 
 
-GPU = "B200:2"
+GPU = "H200"
 MAX_CONTAINERS = 4
 REMOTE_ROOT = "/root"
 RUN_TIMEOUT_SECONDS = 60 * 60
