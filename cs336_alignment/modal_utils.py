@@ -1,24 +1,3 @@
-"""Modal helpers for running assignment 5 jobs.
-
-Example usage:
-
-import sys
-from cs336_alignment.modal_utils import app, quote_command, submit_commands
-
-def build_run_commands(args):
-    # Suppose args.seeds = '0,1,2,3'
-    return [
-        [sys.executable, "-u", "scripts/grpo.py", "--seed", seed]
-        for seed in args.seeds.split(',')
-    ]
-
-@app.local_entrypoint(name=...)
-def modal_main(*argv: str) -> None:
-    args = make_parser().parse_args(list(argv))
-    commands = build_run_commands(args)
-    submit_commands(commands)
-"""
-
 from __future__ import annotations
 
 import shlex
@@ -39,7 +18,7 @@ REMOTE_ROOT = "/root"
 RUN_TIMEOUT_SECONDS = 60 * 60
 WANDB_SECRET_NAME = "wandb"
 
-app = modal.App(f"cs336-a5-rlvr-{SUNET_ID}")
+app = modal.App(f"benchmark-{SUNET_ID}")
 wandb_secret = modal.Secret.from_name(WANDB_SECRET_NAME)
 
 image = (

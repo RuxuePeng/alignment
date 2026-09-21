@@ -19,13 +19,13 @@ from cs336_alignment.modal_utils import (
 )
 
 
-app = modal.App(f"cs336-a5-supplement-{SUNET_ID}")
+app = modal.App(f"cs336-supplement-{SUNET_ID}")
 
-SHARED_VOLUME_NAME = "cs336-a5-supplement"
+SHARED_VOLUME_NAME = "cs336-supplement"
 SHARED_VOLUME_ENVIRONMENT = "cs336-shared-data"
-SHARED_VOLUME_MOUNT_PATH = "/mnt/cs336-a5-supplement"
-RESULTS_VOLUME_NAME = f"cs336-a5-supplement-results-{SUNET_ID}"
-RESULTS_VOLUME_MOUNT_PATH = "/mnt/cs336-a5-supplement-results"
+SHARED_VOLUME_MOUNT_PATH = "/mnt/cs336-supplement"
+RESULTS_VOLUME_NAME = f"cs336-supplement-results-{SUNET_ID}"
+RESULTS_VOLUME_MOUNT_PATH = "/mnt/cs336-supplement-results"
 
 BASE_MODEL_PATH = f"{SHARED_VOLUME_MOUNT_PATH}/models/Meta-Llama-3.1-8B"
 JUDGE_MODEL_PATH = f"{SHARED_VOLUME_MOUNT_PATH}/models/Llama-3.3-70B-Instruct"
