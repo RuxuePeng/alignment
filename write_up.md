@@ -1,4 +1,4 @@
-# Problem (prompting_baselines):  Run OLMo-2-0425-1B on GSM8K (5 points)
+# Problem (prompting_baselines):  Run OLMo-2-0425-1B on GSM8K
 ## (a) Write a script to evaluate OLMo-2-0425-1B performance on GSM8K with zero-shot question_only, zero-shot r1_zero, and few-shot r1_zero_three_shot prompts.
 Then, run your script and observe the outputs. For each prompt, how many model generations fall into each of the following categories: 
 (1) correct with both format and correctness reward 1, 
